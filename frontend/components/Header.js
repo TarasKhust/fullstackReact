@@ -1,7 +1,5 @@
 import Nav from './Nav';
-<<<<<<< HEAD
 import Link from 'next/link';
-import React from 'react';
 import styled from 'styled-components';
 import Router from 'next/router';
 import NProgress from 'nprogress';
@@ -59,21 +57,6 @@ const Header = () => (
 				<Nav/>
 			</div>
 		</StyledHeader>
-=======
-import React from 'react';
-
-const Header = () => (
-		<div>
-			<div className="bar">
-				<a href="">Sick Fits</a>
-				<Nav/>
-			</div>
-			<div className="sub-bar">
-				<p>Search</p>
-			</div>
-			<div>Cart</div>
-		</div>
->>>>>>> 80cdc30... add meta
-);
+)
 
 export default Header;

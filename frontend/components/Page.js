@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import Header from './Header';
 import Meta from './Meta';
-<<<<<<< HEAD
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 const theme = {
 	red: '#FF0000',
@@ -15,17 +14,17 @@ const theme = {
 };
 
 const StyledPage = styled.div`
-	background: white;
-	color: ${({theme}) => theme.black};
+  background: white;
+  color: ${props => props.theme.black};
 `;
 
 const Inner = styled.div`
-	max-width: ${({theme}) => theme.maxWidth};
-	margin: 0 auto;
-	padding: 2rem;
+  max-width: ${props => props.theme.maxWidth};
+  margin: 0 auto;
+  padding: 2rem;
 `;
 
-const GlobalStyle = createGlobalStyle`
+const Global = createGlobalStyle`
   @font-face {
     font-family: 'radnika_next';
     src: url('/static/radnikanext-medium-webfont.woff2') format('woff2');
@@ -51,28 +50,18 @@ const GlobalStyle = createGlobalStyle`
     color: ${theme.black};
   }
 `;
-=======
->>>>>>> 80cdc30... add meta
 
 class Page extends Component {
 	render() {
 		return (
-<<<<<<< HEAD
 				<ThemeProvider theme={theme}>
-				<StyledPage>
-					<GlobalStyle/>
-					<Meta/>
-					<Header/>
-					<Inner>{this.props.children}</Inner>
-				</StyledPage>
+					<StyledPage>
+						<Global />
+						<Meta />
+						<Header />
+						<Inner>{this.props.children}</Inner>
+					</StyledPage>
 				</ThemeProvider>
-=======
-				<div>
-					<Meta/>
-					<Header/>
-					{this.props.children}
-				</div>
->>>>>>> 80cdc30... add meta
 		);
 	}
 }

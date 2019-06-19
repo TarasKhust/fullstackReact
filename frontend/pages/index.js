@@ -1,11 +1,9 @@
-<<<<<<< HEAD
-=======
-import Link from 'next/link';
+import Items from '../components/items';
 
->>>>>>> 80cdc30... add meta
 const Home = (props) => {
 	return (
 			<div>
+				<Items/>
 			</div>
 	);
 };
