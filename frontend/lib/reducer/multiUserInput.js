@@ -28,5 +28,16 @@ export default initialValue => {
 		});
 
 	};
-	return [userInput, handleChange, uploadFile];
+	const updateItems = async (e, updateItemMutation) => {
+		e.preventDefault();
+		console.log('Updating Item!!');
+		const res = await updateItemMutation({
+			variables: {
+				id: id,
+				...userInput,
+			},
+		});
+		console.log('Updated!!');
+	};
+	return [userInput, handleChange, uploadFile, updateItems];
 }

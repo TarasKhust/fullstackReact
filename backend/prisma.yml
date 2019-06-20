@@ -1,10 +1,10 @@
 endpoint: ${env:PRISMA_ENDPOINT}
 datamodel: datamodel.graphql
-# secret: ${env:PRISMA_SECRET}
+secret: ${env:PRISMA_SECRET}
 
-generate:
-  - generator: graphql-schema
-    output: ./src/generated/
+#generate:
+#  - generator: graphql-schema
+#    output: ./src/generated/
 
 hooks:
   post-deploy:
