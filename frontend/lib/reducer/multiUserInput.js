@@ -10,5 +10,23 @@ export default initialValue => {
 		const val = type === 'number' ? parseFloat(value) : value;
 		setUserInput({ [name]: val });
 	};
-	return [userInput, handleChange];
+	const uploadFile = async e => {
+		const url = `https://api.cloudinary.com/v1_1/dinfna4ih/image/upload`;
+		const files = e.target.files;
+		const data = new FormData();
+		data.append('file', files[0]);
+		data.append('upload_preset', 'sickfits');
+		const res = await fetch(url, {
+			method: 'POST',
+			body: data
+		});
+		const file = await res.json();
+		const { eager, secure_url } = file;
+		setUserInput({
+			image: secure_url,
+			largeImage: eager[0].secure_url
+		});
+
+	};
+	return [userInput, handleChange, uploadFile];
 }

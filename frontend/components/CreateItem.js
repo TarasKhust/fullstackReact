@@ -37,21 +37,36 @@ const CreateItem = () => {
 		largeImage: '',
 		price: 22,
 	};
-	const [userInput, handleChange] = multiUserInput(initialValue);
-	const { title, price, description } = userInput;
+	const [userInput, handleChange, uploadFile] = multiUserInput(initialValue);
+
+	const { title, price, description, image } = userInput;
 	return (
 			<Mutation mutation={CREATE_ITEM_MUTATION} variables={userInput}>
 				{(createItem, { loading, error }) => (
 						<Form onSubmit={async e => {
 							e.preventDefault();
 							const res = await createItem();
+							const { data } = res;
 							Router.push({
 								pathname: '/items',
-								query: { id: res.data.createItem.id },
+								query: { id: data.createItem.id },
 							});
 						}}>
 							<Error error={error}/>
 							<fieldset disabled={loading} aria-busy={loading}>
+								<label htmlFor="file">
+								Image
+								<input type="file"
+								       id="file"
+								       name="file"
+								       placeholder="Upload an image"
+								       required
+								       onChange={uploadFile}
+								/>
+									{image && (
+											<img width="200" src={image} alt="Upload Preview" />
+									)}
+							</label>
 								<label htmlFor="title">
 									Title
 									<input type="text"
