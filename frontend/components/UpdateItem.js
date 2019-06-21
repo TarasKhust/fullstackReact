@@ -37,9 +37,8 @@ const UpdateItem = ({ id }) => {
 				id: id,
 			}}>
 				{({ data, loading }) => {
-					{console.log(loading)}
 					if (loading) return  <p>Loading...</p>;
-					if (!data) return  <p>No item Found for ID {id}</p>;
+					if (!data.item) return  <p>No item Found for ID {id}</p>;
 					return (
 							<Mutation mutation={UPDATE_ITEM_MUTATION} variables={userInput}>
 								{(updateItem, { loading, error }) => (
