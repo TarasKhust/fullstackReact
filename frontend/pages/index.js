@@ -1,10 +1,9 @@
 import Items from '../components/items';
-import React from 'react';
 
-const Home = () => {
+const Home = ({ query }) => {
 	return (
 			<div>
-				<Items/>
+				<Items page={parseFloat(query.page) || 1}/>
 			</div>
 	);
 };
