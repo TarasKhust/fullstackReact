@@ -29,66 +29,66 @@ const UPDATE_ITEM_MUTATION = gql`
 `;
 
 const UpdateItem = ({ id }) => {
-	console.log(id)
-	const [userInput, handleChange, updateItems] = multiUserInput({});
+  console.log(id);
+  const [userInput, handleChange, updateItems] = multiUserInput({});
 
-	return (
-			<Query query={SINGLE_ITEM_QUERY} variables={{
-				id: id,
-			}}>
-				{({ data, loading }) => {
-					if (loading) return  <p>Loading...</p>;
-					if (!data.item) return  <p>No item Found for ID {id}</p>;
-					return (
-							<Mutation mutation={UPDATE_ITEM_MUTATION} variables={userInput}>
-								{(updateItem, { loading, error }) => (
-										<Form onSubmit={e => updateItems(e, updateItem)}>
-											<Error error={error}/>
-											<fieldset disabled={loading} aria-busy={loading}>
-												<label htmlFor="title">
-													Title
-													<input type="text"
-													       id="title"
-													       name="title"
-													       placeholder="Title"
-													       defaultValue={data.item.title}
-													       required
-													       onChange={handleChange}
-													/>
-												</label>
-												<label htmlFor="price">
-													Price
-													<input type="number"
-													       id="price"
-													       name="price"
-													       placeholder="Price"
-													       value={data.item.price}
-													       required
-													       onChange={handleChange}
-													/>
-												</label>
-												<label htmlFor="description">
-													Description
-													<textarea type="text"
-													          id="description"
-													          name="description"
-													          placeholder="Description"
-													          defaultValue={data.item.description}
-													          required
-													          onChange={handleChange}
-													/>
-												</label>
-												<button type="submit">Save Chanches</button>
-											</fieldset>
-										</Form>
-								)
-								}
-							</Mutation>
-					);
-				}}
-			</Query>
+  return (
+    <Query query={SINGLE_ITEM_QUERY} variables={{
+      id: id
+    }}>
+      {({ data, loading }) => {
+        if (loading) return <p>Loading...</p>;
+        if (!data.item) return <p>No item Found for ID {id}</p>;
+        return (
+          <Mutation mutation={UPDATE_ITEM_MUTATION} variables={userInput}>
+            {(updateItem, { loading, error }) => (
+              <Form onSubmit={e => updateItems(e, updateItem)}>
+                <Error error={error}/>
+                <fieldset disabled={loading} aria-busy={loading}>
+                  <label htmlFor="title">
+                    Title
+                    <input type="text"
+                           id="title"
+                           name="title"
+                           placeholder="Title"
+                           defaultValue={data.item.title}
+                           required
+                           onChange={handleChange}
+                    />
+                  </label>
+                  <label htmlFor="price">
+                    Price
+                    <input type="number"
+                           id="price"
+                           name="price"
+                           placeholder="Price"
+                           value={data.item.price}
+                           required
+                           onChange={handleChange}
+                    />
+                  </label>
+                  <label htmlFor="description">
+                    Description
+                    <textarea type="text"
+                              id="description"
+                              name="description"
+                              placeholder="Description"
+                              defaultValue={data.item.description}
+                              required
+                              onChange={handleChange}
+                    />
+                  </label>
+                  <button type="submit">Save Chanches</button>
+                </fieldset>
+              </Form>
+            )
+            }
+          </Mutation>
+        );
+      }}
+    </Query>
 
-	);
+  );
 };
 
 export default UpdateItem;
