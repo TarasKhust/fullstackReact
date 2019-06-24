@@ -7,7 +7,6 @@ const Nav = () => (
   <User>
     {({ data: { me } }) => (
       <NavStyles>
-        {console.log(me)}
         <Link href="/items">
           <a>Shop</a>
         </Link>
