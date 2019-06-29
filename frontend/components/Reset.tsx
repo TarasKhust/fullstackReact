@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Form from './styles/Form';
@@ -24,7 +24,7 @@ interface State {
   confirmPassword: any
 }
 
-class Reset extends React.Component <Props, State> {
+class Reset extends Component <Props, State> {
   state = {
     password: '',
     confirmPassword: ''
