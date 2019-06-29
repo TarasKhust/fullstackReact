@@ -15,22 +15,12 @@ const RESET_MUTATION = gql`
     }
 `;
 
-interface Props {
-  resetToken: string
-}
-
-interface State {
-  password: any,
-  confirmPassword: any
-}
-
-class Reset extends Component <Props, State> {
+class Reset extends Component {
   state = {
     password: '',
     confirmPassword: ''
   };
   saveToState = e => {
-    // @ts-ignore
     this.setState({ [e.target.name]: e.target.value });
   };
 
