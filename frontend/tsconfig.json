@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "rootDir": "./components",
+    "outDir": "./dist",
+    "module": "commonjs",
+    "target": "es6",
+    "jsx": "react",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": false
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
+
+
