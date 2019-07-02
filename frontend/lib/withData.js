@@ -9,9 +9,9 @@ function createClient({ headers }) {
     request: operation => {
       operation.setContext({
         fetchOptions: {
-          credentials: 'include',
+          credentials: 'include'
         },
-        headers,
+        headers
       });
     },
     // local data
@@ -21,21 +21,21 @@ function createClient({ headers }) {
           toggleCart(_, variables, { cache }) {
             // read the cartOpen value from the cache
             const { cartOpen } = cache.readQuery({
-              query: LOCAL_STATE_QUERY,
+              query: LOCAL_STATE_QUERY
             });
             // Write the cart State to the opposite
             const data = {
-              data: { cartOpen: !cartOpen },
+              data: { cartOpen: !cartOpen }
             };
             cache.writeData(data);
             return data;
-          },
-        },
+          }
+        }
       },
       defaults: {
-        cartOpen: true,
-      },
-    },
+        cartOpen: true
+      }
+    }
   });
 }
 
