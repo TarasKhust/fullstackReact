@@ -16,7 +16,6 @@ describe('mocking learning', () => {
     fetchDogs();
     fetchDogs();
     expect(fetchDogs).toBeCalled();
-    expect(fetchDogs).toBeCalledWith('snickers');
     expect(fetchDogs).toBeCalledTimes(2);
   });
 

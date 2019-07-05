@@ -22,7 +22,7 @@ class Item extends Component {
           {image && <img src={image} alt={title}/>}
           <Title>
             <Link href={{
-              pathname: 'item',
+              pathname: 'item.test.js',
               query: { id: id }
             }}><a>{title}</a></Link>
           </Title>
