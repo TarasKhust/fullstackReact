@@ -39,7 +39,7 @@ describe('<Pagination/>', () => {
     expect(wrapper.text()).toContain('Loading...');
   });
 
-  it.skip('renders pagination for 18 items', async () => {
+  it('renders pagination for 18 items', async () => {
     const wrapper = mount(
       <MockedProvider mocks={makeMocksFor(18)}>
         <Pagination page={1} />

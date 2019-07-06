@@ -48,7 +48,7 @@ describe('<Nav/>', () => {
     expect(toJSON(nav)).toMatchSnapshot();
   });
 
-  it.skip('renders full nav when signed in', async () => {
+  it('renders full nav when signed in', async () => {
     const wrapper = mount(
       <MockedProvider mocks={signedInMocks}>
         <Nav />
