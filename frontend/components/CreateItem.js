@@ -42,7 +42,8 @@ const CreateItem = () => {
 	return (
 			<Mutation mutation={CREATE_ITEM_MUTATION} variables={userInput}>
 				{(createItem, { loading, error }) => (
-						<Form onSubmit={async e => {
+						<Form data-test="form"
+							onSubmit={async e => {
 							e.preventDefault();
 							const res = await createItem();
 							const { data } = res;
