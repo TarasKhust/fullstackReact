@@ -35,7 +35,7 @@ class Reset extends Component {
         }}
         refetchQueries={[{ query: CURRENT_USER_QUERY }]}
       >
-        {(reset, { error, loading, called }) => (
+        {(reset, { error, loading }) => (
           <Form
             method="post"
             onSubmit={async e => {

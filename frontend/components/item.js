@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ItemStyles from './styles/ItemStyles';
 import Title from './styles/Title';
@@ -8,42 +8,39 @@ import formatMoney from '../lib/formatMoney';
 import DeleteItem from './DeleteItem';
 import AddToCart from './AddToCart';
 
-class Item extends Component {
-  static propTypes = {
-    item: PropTypes.object.isRequired
-  };
+const Item = ({ item }) => {
+  const { id, image, title, description, price } = item;
+  return (
+    <div>
+      <ItemStyles>
+        {image && <img src={image} alt={title}/>}
+        <Title>
+          <Link href={{
+            pathname: 'item',
+            query: { id: id }
+          }}><a>{title}</a></Link>
+        </Title>
+        <PriceTag>{formatMoney(price)}</PriceTag>
+        <p>{description}</p>
 
-  render() {
-    const { item } = this.props;
-    const { id, image, title, description, price } = item;
-    return (
-      <div>
-        <ItemStyles>
-          {image && <img src={image} alt={title}/>}
-          <Title>
-            <Link href={{
-              pathname: 'item',
-              query: { id: id }
-            }}><a>{title}</a></Link>
-          </Title>
-          <PriceTag>{formatMoney(price)}</PriceTag>
-          <p>{description}</p>
+        <div className="buttonList">
+          <Link href={{
+            pathname: 'update',
+            query: { id: id }
+          }}>
+            <a>Edit ✏️</a>
+          </Link>
+          <AddToCart id={item.id}/>
+          <DeleteItem id={id}>Delete This Item</DeleteItem>
+        </div>
+      </ItemStyles>
 
-          <div className="buttonList">
-            <Link href={{
-              pathname: 'update',
-              query: { id: id }
-            }}>
-              <a>Edit ✏️</a>
-            </Link>
-            <AddToCart id={item.id}/>
-            <DeleteItem id={id}>Delete This Item</DeleteItem>
-          </div>
-        </ItemStyles>
+    </div>
+  );
+};
 
-      </div>
-    );
-  }
-}
+Item.propTypes = {
+  item: PropTypes.object.isRequired
+};
 
 export default Item;

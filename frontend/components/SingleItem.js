@@ -37,36 +37,33 @@ const SINGLE_ITEM_QUERY = gql`
     }
 `;
 
-class SingleItem extends Component {
-
-  render() {
-    return (
-      <Query query={SINGLE_ITEM_QUERY} variables={{
-        id: this.props.id
-      }}>
-        {({ error, loading, data }) => {
-          if (error) return <DisplayError error={error}/>;
-          if (loading) return <p>Loading...</p>;
-          if (!data.item) return <p>No Item Found for {this.props.id}</p>;
-          const { title, description, largeImage, price } = data.item;
-          return (
-            <SingleItemStyles>
-              <Head>
-                <title>Sick Fits | {title}</title>
-              </Head>
-              <img src={largeImage} alt={title}/>
-              <div className="details">
-                <h2>Viewing {title}</h2>
-                <p>{description}</p>
-                <p>{formatMoney(price)}</p>
-              </div>
-            </SingleItemStyles>
-          );
-        }}
-      </Query>
-    );
-  }
-}
+const SingleItem = ({ id }) => {
+  return (
+    <Query query={SINGLE_ITEM_QUERY} variables={{
+      id: id
+    }}>
+      {({ error, loading, data }) => {
+        if (error) return <DisplayError error={error}/>;
+        if (loading) return <p>Loading...</p>;
+        if (!data.item) return <p>No Item Found for {id}</p>;
+        const { title, description, largeImage, price } = data.item;
+        return (
+          <SingleItemStyles>
+            <Head>
+              <title>Sick Fits | {title}</title>
+            </Head>
+            <img src={largeImage} alt={title}/>
+            <div className="details">
+              <h2>Viewing {title}</h2>
+              <p>{description}</p>
+              <p>{formatMoney(price)}</p>
+            </div>
+          </SingleItemStyles>
+        );
+      }}
+    </Query>
+  );
+};
 
 export default SingleItem;
 export { SINGLE_ITEM_QUERY };
