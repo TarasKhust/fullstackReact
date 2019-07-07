@@ -11,7 +11,7 @@ exports[`<Item/> renders and matches the snapshot 1`] = `
       <Link
         href={
           Object {
-            "pathname": "item.test.js",
+            "pathname": "item",
             "query": Object {
               "id": "ABC123",
             },
