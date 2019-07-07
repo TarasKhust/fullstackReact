@@ -70,7 +70,6 @@ describe('<AddToCart/>', () => {
     await wait();
     wrapper.update();
     const { data: { me } } = await apolloClient.query({ query: CURRENT_USER_QUERY });
-    // console.log(me);
     expect(me.cart).toHaveLength(0);
     // add an item to the cart
     wrapper.find('button').simulate('click');

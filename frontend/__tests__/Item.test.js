@@ -24,7 +24,7 @@ describe('<Item/>', () => {
     expect(img.props().alt).toBe(fakeItem.title);
   });
 
-  it.skip('renders the pricetag and title', () => {
+  it('renders the pricetag and title', () => {
     const wrapper = shallow(<ItemComponent item={fakeItem} />);
     const PriceTag = wrapper.parent('PriceTag');
     PriceTag.debug()/*?*/

@@ -19,7 +19,7 @@ class AddToCart extends React.Component {
       <Mutation
         mutation={ADD_TO_CART_MUTATION}
         variables={{
-          id
+          id,
         }}
         refetchQueries={[{ query: CURRENT_USER_QUERY }]}
       >
@@ -32,6 +32,5 @@ class AddToCart extends React.Component {
     );
   }
 }
-
 export default AddToCart;
 export { ADD_TO_CART_MUTATION };
