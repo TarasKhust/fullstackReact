@@ -9,7 +9,8 @@
     "start": "next start -p $PORT",
     "test": "NODE_ENV=test jest --watch",
     "test-win": "SET NODE_ENV=test&& jest --watch",
-    "heroku-postbuild": "next build"
+    "heroku-postbuild": "next build",
+    "update-front": "git subtree push --prefix frontend heroku-frontend master"
   },
   "author": "",
   "license": "ISC",

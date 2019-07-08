@@ -38,7 +38,7 @@ const Items = ({ page }) => {
       <p>Items!</p>
       <Query
         query={ALL_ITEMS_QUERY}
-        // fetchPolicy="network-only"
+        fetchPolicy="network-only"
         variables={{
           skip: page * perPage - perPage
         }}>

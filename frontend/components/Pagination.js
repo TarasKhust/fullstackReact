@@ -18,7 +18,7 @@ const PAGINATION_QUERY = gql`
 `;
 
 const Pagination = props => (
-  <Query query={PAGINATION_QUERY}>
+  <Query query={PAGINATION_QUERY} fetchPolicy='network-only'>
     {({ data, loading, error }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <Error error={error} />;
