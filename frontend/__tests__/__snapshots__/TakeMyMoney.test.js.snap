@@ -13,7 +13,7 @@ exports[`<TakeMyMoney/> renders and matches snapshot 1`] = `
   locale="auto"
   name="Sick Fits"
   reconfigureOnUpdate={false}
-  stripeKey="pk_test_Vtknn6vSdcZWSG2JWvEiWSqC"
+  stripeKey="pk_test_jbjlWEzbVHc1o60yVjeZvS6y00OB8W7Fai"
   token={[Function]}
   triggerEvent="onClick"
 >

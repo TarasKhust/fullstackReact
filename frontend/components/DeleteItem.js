@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import Router from 'next/router';
 import { ALL_ITEMS_QUERY } from './items';
 
 const DELETE_ITEM_MUTATION = gql`
@@ -37,6 +38,9 @@ class DeleteItem extends Component {
                   alert(err.message);
                 });
               }
+              Router.push({
+                pathname: '/items'
+              });
             }}
           >
             {this.props.children}
