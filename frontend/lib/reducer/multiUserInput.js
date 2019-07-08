@@ -39,5 +39,5 @@ export default initialValue => {
 		});
 		console.log('Updated!!');
 	};
-	return [userInput, handleChange, uploadFile, updateItems];
+	return [userInput, handleChange, uploadFile, updateItems ];
 }
