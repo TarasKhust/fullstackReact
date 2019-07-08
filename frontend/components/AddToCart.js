@@ -1,6 +1,7 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import Router from 'next/router';
 import { CURRENT_USER_QUERY } from './User';
 
 const ADD_TO_CART_MUTATION = gql`
@@ -22,7 +23,14 @@ const AddToCart = ({ id }) => {
       refetchQueries={[{ query: CURRENT_USER_QUERY }]}
     >
       {(addToCart, { loading }) => (
-        <button disabled={loading} onClick={addToCart}>
+        <button disabled={loading} onClick={() => (
+          addToCart().catch(err => {
+            alert(err.message);
+            Router.push({
+              pathname: '/signup'
+            });
+          }
+        ))}>
           Add{loading && 'ing'} To Cart 🛒
         </button>
       )}

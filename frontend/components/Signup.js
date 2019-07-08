@@ -23,7 +23,7 @@ const Signup = () => {
     email: '',
     password: ''
   };
-  const [userInput, handleChange ] = multiUserInput(state);
+  const [userInput, handleChange] = multiUserInput(state);
 
   return (
     <Mutation

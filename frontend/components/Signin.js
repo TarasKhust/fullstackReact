@@ -3,6 +3,7 @@ import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Form from './styles/Form';
 import Error from './ErrorMessage';
+import Router from 'next/router';
 import { CURRENT_USER_QUERY } from './User';
 
 const SIGNIN_MUTATION = gql`
@@ -17,9 +18,8 @@ const SIGNIN_MUTATION = gql`
 
 class Signin extends Component {
   state = {
-    name: '',
-    password: '',
-    email: '',
+    password: 'demo',
+    email: 'demo@mail.ru',
   };
   saveToState = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -37,7 +37,10 @@ class Signin extends Component {
             onSubmit={async e => {
               e.preventDefault();
               await signup();
-              this.setState({ name: '', email: '', password: '' });
+              this.setState({ email: '', password: '' });
+              Router.push({
+                pathname: '/items'
+              });
             }}
           >
             <fieldset disabled={loading} aria-busy={loading}>

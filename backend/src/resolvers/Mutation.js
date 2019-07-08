@@ -18,11 +18,11 @@ const Mutations = {
           // This is how to create a relationship between the Item and the User
           user: {
             connect: {
-              id: ctx.request.userId,
-            },
+              id: ctx.request.userId
+            }
           },
-          ...args,
-        },
+          ...args
+        }
       },
       info
     );
@@ -56,7 +56,7 @@ const Mutations = {
     );
 
     if (!ownsItem && !hasPermissions) {
-      throw new Error("You don't have permission to do that!");
+      throw new Error('You don\'t have permission to do that!');
     }
 
     // 3. Delete it!
@@ -185,8 +185,8 @@ const Mutations = {
     const currentUser = await ctx.db.query.user(
       {
         where: {
-          id: ctx.request.userId,
-        },
+          id: ctx.request.userId
+        }
       },
       info
     );
@@ -197,12 +197,12 @@ const Mutations = {
       {
         data: {
           permissions: {
-            set: args.permissions,
-          },
+            set: args.permissions
+          }
         },
         where: {
-          id: args.userId,
-        },
+          id: args.userId
+        }
       },
       info
     );
@@ -217,8 +217,8 @@ const Mutations = {
     const [existingCartItem] = await ctx.db.query.cartItems({
       where: {
         user: { id: userId },
-        item: { id: args.id },
-      },
+        item: { id: args.id }
+      }
     });
     // 3. Check if that item is already in their cart and increment by 1 if it is
     if (existingCartItem) {
@@ -226,7 +226,7 @@ const Mutations = {
       return ctx.db.mutation.updateCartItem(
         {
           where: { id: existingCartItem.id },
-          data: { quantity: existingCartItem.quantity + 1 },
+          data: { quantity: existingCartItem.quantity + 1 }
         },
         info
       );
@@ -236,12 +236,12 @@ const Mutations = {
       {
         data: {
           user: {
-            connect: { id: userId },
+            connect: { id: userId }
           },
           item: {
-            connect: { id: args.id },
-          },
-        },
+            connect: { id: args.id }
+          }
+        }
       },
       info
     );
@@ -251,8 +251,8 @@ const Mutations = {
     const cartItem = await ctx.db.query.cartItem(
       {
         where: {
-          id: args.id,
-        },
+          id: args.id
+        }
       },
       `{ id, user { id }}`
     );
@@ -265,7 +265,7 @@ const Mutations = {
     // 3. Delete that cart item
     return ctx.db.mutation.deleteCartItem(
       {
-        where: { id: args.id },
+        where: { id: args.id }
       },
       info
     );
@@ -273,7 +273,8 @@ const Mutations = {
   async createOrder(parent, args, ctx, info) {
     // 1. Query the current user and make sure they are signed in
     const { userId } = ctx.request;
-    if (!userId) throw new Error('You must be signed in to complete this order.');
+    if (!userId) throw new Error(
+      'You must be signed in to complete this order.');
     const user = await ctx.db.query.user(
       { where: { id: userId } },
       `{
@@ -296,14 +297,14 @@ const Mutations = {
     const charge = await stripe.charges.create({
       amount,
       currency: 'USD',
-      source: args.token,
+      source: args.token
     });
     // 4. Convert the CartItems to OrderItems
     const orderItems = user.cart.map(cartItem => {
       const orderItem = {
         ...cartItem.item,
         quantity: cartItem.quantity,
-        user: { connect: { id: userId } },
+        user: { connect: { id: userId } }
       };
       delete orderItem.id;
       return orderItem;
@@ -315,19 +316,19 @@ const Mutations = {
         total: charge.amount,
         charge: charge.id,
         items: { create: orderItems },
-        user: { connect: { id: userId } },
-      },
+        user: { connect: { id: userId } }
+      }
     });
     // 6. Clean up - clear the users cart, delete cartItems
     const cartItemIds = user.cart.map(cartItem => cartItem.id);
     await ctx.db.mutation.deleteManyCartItems({
       where: {
-        id_in: cartItemIds,
-      },
+        id_in: cartItemIds
+      }
     });
     // 7. Return the Order to the client
     return order;
-  },
+  }
 };
 
 module.exports = Mutations;
