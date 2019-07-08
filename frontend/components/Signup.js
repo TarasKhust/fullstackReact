@@ -52,7 +52,7 @@ const Signup = () => {
                 type="email"
                 name="email"
                 placeholder="email"
-                value={state.email}
+                value={userInput.email}
                 onChange={handleChange}
               />
             </label>
@@ -62,7 +62,7 @@ const Signup = () => {
                 type="text"
                 name="name"
                 placeholder="name"
-                value={state.name}
+                value={userInput.name}
                 onChange={handleChange}
               />
             </label>
@@ -72,7 +72,7 @@ const Signup = () => {
                 type="password"
                 name="password"
                 placeholder="password"
-                value={state.password}
+                value={userInput.password}
                 onChange={handleChange}
               />
             </label>
